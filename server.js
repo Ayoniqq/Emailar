@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-//const nodeMailer = require('nodemailer');
+const dotenv = require('dotenv').config();
+const nodemailer = require('nodemailer');
 
 
 //NODEMAILER TRANSPORTER OBJECT
@@ -18,8 +19,8 @@ let transporter = nodemailer.createTransport({
 });
 //NODEMAILER MAIL OPTIONS
 let mailOptions = {
-    from: 'ayorindeadeshina@gmail.com',
-    to: 'ayuspee@gmail.com',
+    from: process.env.MAIL_USERNAME,
+    to: 'ayuspee@gmail.com', //
     subject: 'Emailar(Nodemailer Project)',
     text: 'This is a message from Nodemailer Project - EMAILAR'
 };
