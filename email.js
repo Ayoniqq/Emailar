@@ -1,13 +1,5 @@
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3000;
-const dotenv = require("dotenv").config();
 const nodemailer = require("nodemailer");
-const ejs = require("ejs");
-const sendEmail = require("./email");
-//const { sendar } = require("./email");
-app.set("view engine", "ejs");
-app.set(express.urlencoded({ extended: true }));
+const dotenv = require("dotenv").config();
 
 //NODEMAILER TRANSPORTER OBJECT
 let transporter = nodemailer.createTransport({
@@ -40,15 +32,4 @@ const sendEmailar = () => {
   });
 };
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.post("/", (req, res) => {
-  sendEmailar();
-  res.redirect("/");
-  console.log(process.env.MAIL_USERNAME, "MAIL SENT SUCCESSFULLY");
-});
-
-app.listen(PORT, (req, res) => {
-  console.log(`SERVER ON PORT: ${PORT}`);
-});
+module.exports = sendEmailar;
